@@ -17,7 +17,9 @@ Your `.env` file should have:
 ```bash
 BRAVE_API_KEY=...
 OPENCLAW_MODEL=ollama/qwen3:8b   # optional, enforced at startup if set
+OPENCLAW_ANTHROPIC_MODEL=claude-sonnet-4-5  # optional, used with --anthropic
 OPENCLAW_TIMEOUT_SECONDS=1200    # optional; default 1200
+OPENCLAW_HEARTBEAT_SECONDS=30    # optional; progress print interval while waiting
 OPENCLAW_THINKING=minimal        # optional; off|minimal|low|medium|high
 OPENCLAW_MAX_ATTEMPTS=2          # optional; retry count if append not confirmed
 SPREADSHEET_ID=your_spreadsheet_id_here  # optional
@@ -71,6 +73,12 @@ python main.py spreadsheet_agent YOUR_SPREADSHEET_ID
 
 # Or set SPREADSHEET_ID in .env and run:
 python main.py spreadsheet_agent
+
+# Use Anthropic provider (remote) instead of local embedded runtime:
+python main.py spreadsheet_agent --anthropic YOUR_SPREADSHEET_ID
+
+# Equivalent explicit provider form:
+python main.py spreadsheet_agent --provider anthropic YOUR_SPREADSHEET_ID
 ```
 
 The agent will:
